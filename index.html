@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Fetch json example</title>
+
+    <link rel="stylesheet" href="style.css">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <h1>Fetch json example</h1>
+    <ul>
+    </ul>
+
+</body>
+<script>
+    fetch('https://www.imis.bfs.de/ogc/opendata/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opendata:odl_brutto_1h&format_options=CHARSET:UTF-8&CQL_FILTER=(end_measure%3D2021-12-15T13%3A00%3A00.000Z)%20AND%20(source%20%3D%20%27BfS%27)&outputFormat=application%2Fjson')
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error("HTTP error, status = " + response.status);
+            }
+            //console.log(response.json());
+            return response.json();
+        })
+        .then(function(json) {
+            for (var i = 0; i < json.features.length; i++) {
+                var listItem = [];
+
+                if (json) {
+                    console.log("hurray");
+
+                    var accounting = [];
+
+
+                    for (var i in json.features) {
+
+                        var item = json.features[i];
+
+                        accounting.push({
+                            "firstName": item.properties.id,
+                            "value": item.properties.value,
+                            "time": item.properties.start
+
+                        });
+
+                    }
+                }
+                console.log(accounting);
+                for (var i = 0; i < json.features.length; i++) {
+                    console.log(accounting[i].firstName);
+                    console.log(accounting[i].value);
+                }
+
+            }
+        })
+        .catch(function(error) {
+
+        });
+    // console.log(myList);
+</script>
+
+</html>
