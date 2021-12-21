@@ -31,20 +31,20 @@
         })
         .then(function(json) {
             for (var i = 0; i < json.features.length; i++) {
-                var listItem = [];
+
 
                 if (json) {
                     console.log("hurray");
 
 
-                    var accounting = [];
+                    var listItem = [];
 
 
                     for (var i in json.features) {
 
                         var item = json.features[i];
 
-                        accounting.push({
+                        listItem.push({
                             "firstName": item.properties.id,
                             "value": item.properties.value,
                             "time": item.properties.start
@@ -53,10 +53,10 @@
 
                     }
                 }
-                console.log(accounting);
+                console.log(listItem);
                 for (var i = 0; i < json.features.length; i++) {
-                    console.log(accounting[i].firstName);
-                    console.log(accounting[i].value);
+                    console.log(listItem[i].firstName);
+                    console.log(listItem[i].value);
                 }
 
             }
