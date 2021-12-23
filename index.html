@@ -26,25 +26,12 @@
     <div id="third" style="width: 600px;height:400px;"></div>
     <script type="text/javascript">
         for (var i = 0; i < 10; i++) {
-            // var merged = myList.flat(1);;
-            // console.log(merged);
 
-            // function get1DArray(arr) {
-            //     return arr.join().split("],[");
-            // }
+            var listItem = [];
 
-            // console.log(get1DArray(myList));
-
-
-
-
-            // console.log(listItem);
-
-
-            // console.log(listItem[i].firstName);
+            console.log(listItem);
             // console.log(listItem[i].value);
         }
-
 
         var labels = ['Trump', 'Cruz', 'Kasich', 'Rubio'];
         var data = ['1', '2', '3', '4'];
@@ -82,35 +69,18 @@
             myChart.setOption(option);
 
         }
-
         // Initialize the echarts instance based on the prepared 
-
-        var myList = [];
-        var listItem = [];
-
-
-
 
         fetch('https://www.imis.bfs.de/ogc/opendata/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=opendata:odl_brutto_1h&format_options=CHARSET:UTF-8&CQL_FILTER=(end_measure%3D2021-12-15T13%3A00%3A00.000Z)%20AND%20(source%20%3D%20%27BfS%27)&outputFormat=application%2Fjson')
             .then(function(response) {
                 if (!response.ok) {
                     throw new Error("HTTP error, status = " + response.status);
                 }
-                //console.log(response.json());
                 return response.json();
             })
             .then(function(json) {
                 for (var i = 0; i < 10; i++) { //json.features.length
-
-
                     if (json) {
-                        // console.log("hurray");
-                        // var myList = [];
-
-
-                        var listItem = [];
-
-
                         for (var i in json.features) {
                             if (i < 10) {
 
@@ -122,42 +92,17 @@
                                     "time": item.properties.start
 
                                 });
-
-                                stringarr = listItem[0].toString();
-                                // console.log(stringarr);
-                                myList.push(listItem[0].firstName);
-
-
-                                // listItem = this.listItem;
-
-
                             }
-
-
-
-
                         }
-                        console.log(myList);
+                        console.log(listItem);
 
-                    }
-
-                    // console.log(listItem);
-                    for (var i = 0; i < 10; i++) {
-                        // console.log(listItem[i].firstName);
-                        // console.log(listItem[i].value);
                     }
 
                 }
 
             })
-
-
-        // console.log(listItem);
     </script>
 
 </body>
-
-
-
 
 </html>
